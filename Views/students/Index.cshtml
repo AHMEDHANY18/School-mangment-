@@ -1,0 +1,71 @@
+﻿@model PaginatedList<shoolnew.Models.student>
+
+@using shoolnew.Helpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="display-4 text-center my-4">Students List</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+    <form asp-action="Index" method="get" class="d-flex">
+        <input style="width: 400px;" name="term" class="form-control me-2" placeholder="Search..." type="text" value="@ViewBag.term" />
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+    </form>
+</div>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+
+            <th>@Html.DisplayNameFor(model => model.Items.First().StudentId)</th>
+            <th><a class="text-reset text-decoration-none" asp-action="Index" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.OrderFirstName">FirstName</a></th>
+            <th><a class="text-reset text-decoration-none" asp-action="Index" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.OrderLastName">LastName</a></th>
+            <th><a class="text-reset text-decoration-none" asp-action="Index" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.OrderEmail">Email</a></th>
+            <th><a class="text-reset text-decoration-none" asp-action="Index" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.OrderDateOfBirth">DateOfBirth</a></th>
+            <th><a class="text-reset text-decoration-none" asp-action="Index" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.OrderCreatedAt">CreatedAt</a></th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.StudentId)</td>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfBirth)</td>
+                <td>@Html.DisplayFor(modelItem => item.CreatedAt)</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a>
+                        <a class="btn btn-sm btn-info text-white" asp-action="Details" asp-route-id="@item.StudentId">Details</a>
+                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.StudentId" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-end">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Index" asp-route-currpage="@(Model.CurrentPage - 1)" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.orderby">Previous</a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-currpage="@i" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.orderby">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-action="Index" asp-route-currpage="@(Model.CurrentPage + 1)" asp-route-term="@ViewBag.term" asp-route-orderby="@ViewBag.orderby">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>

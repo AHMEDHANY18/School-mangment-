@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to SU School</h1>
+    <p class="lead">Empowering the Future Through Education</p>
+
+    <div class="mt-4">
+        <p class="lead">Explore what we offer:</p>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-controller="Students" asp-action="Index">view Students</a>
+        <a class="btn btn-primary btn-lg" asp-area="" asp-controller="LoginUser" asp-action="Login">login</a>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Our Mission</h5>
+                <p class="card-text">To provide quality education and empower students to achieve their full potential.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Our Vision</h5>
+                <p class="card-text">To be a leading educational institution known for excellence in teaching and learning.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Contact Us</h5>
+                <p class="card-text">Phone: <br>Email: SuSchool@eg.edu</p>
+            </div>
+        </div>
+    </div>
+</div>

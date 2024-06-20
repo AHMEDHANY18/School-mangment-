@@ -1,0 +1,64 @@
+﻿@model shoolnew.Models.AssignmentSubmission
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>AssignmentSubmission</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AssignmentSubmissionID" />
+            <div class="form-group">
+                <label asp-for="AssignmentID" class="control-label"></label>
+                <select asp-for="AssignmentID" class="form-control" asp-items="ViewBag.AssignmentID"></select>
+                <span asp-validation-for="AssignmentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentID" class="control-label"></label>
+                <select asp-for="StudentID" class="form-control" asp-items="ViewBag.StudentID"></select>
+                <span asp-validation-for="StudentID" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SelectedOption" /> @Html.DisplayNameFor(model => model.SelectedOption)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TextInput" class="control-label"></label>
+                <input asp-for="TextInput" class="form-control" />
+                <span asp-validation-for="TextInput" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Attachment" class="control-label"></label>
+                <input asp-for="Attachment" class="form-control" />
+                <span asp-validation-for="Attachment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Created_at" class="control-label"></label>
+                <input asp-for="Created_at" class="form-control" />
+                <span asp-validation-for="Created_at" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Updated_at" class="control-label"></label>
+                <input asp-for="Updated_at" class="form-control" />
+                <span asp-validation-for="Updated_at" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
